@@ -1,6 +1,6 @@
-import { format } from 'date-fns';
-import PropTypes from 'prop-types';
-import ArrowRightIcon from '@heroicons/react/24/solid/ArrowRightIcon';
+import { format } from "date-fns";
+import PropTypes from "prop-types";
+import ArrowRightIcon from "@heroicons/react/24/solid/ArrowRightIcon";
 import {
   Box,
   Button,
@@ -13,64 +13,50 @@ import {
   TableBody,
   TableCell,
   TableHead,
-  TableRow
-} from '@mui/material';
-import { Scrollbar } from 'src/components/scrollbar';
-import { SeverityPill } from 'src/components/severity-pill';
+  TableRow,
+} from "@mui/material";
+import { Scrollbar } from "src/components/scrollbar";
+import { SeverityPill } from "src/components/severity-pill";
+import { useRouter } from "next/router";
 
 const statusMap = {
-  pending: 'warning',
-  delivered: 'success',
-  refunded: 'error'
+  pending: "warning",
+  delivered: "success",
+  refunded: "error",
 };
 
 export const OverviewLatestOrders = (props) => {
+  const router = useRouter();
+
   const { orders = [], sx } = props;
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Orders" />
+      <CardHeader title="Son Aboneler" />
       <Scrollbar sx={{ flexGrow: 1 }}>
-        <Box sx={{ minWidth: 800 }}>
+        <Box>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>
-                  Order
-                </TableCell>
-                <TableCell>
-                  Customer
-                </TableCell>
-                <TableCell sortDirection="desc">
-                  Date
-                </TableCell>
-                <TableCell>
-                  Status
-                </TableCell>
+                <TableCell>Paket</TableCell>
+                <TableCell>Kullanıcı</TableCell>
+                <TableCell sortDirection="desc">Tarih</TableCell>
+                <TableCell>Ücret</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {orders.map((order) => {
-                const createdAt = format(order.createdAt, 'dd/MM/yyyy');
+                const { product, date, userId } = order;
+                const { title, localizedPrice } = product;
+                const createdAt = format(new Date(date), "dd/MM/yyyy");
 
                 return (
-                  <TableRow
-                    hover
-                    key={order.id}
-                  >
+                  <TableRow hover key={userId}>
+                    <TableCell>{title}</TableCell>
+                    <TableCell>{userId}</TableCell>
+                    <TableCell>{createdAt}</TableCell>
                     <TableCell>
-                      {order.ref}
-                    </TableCell>
-                    <TableCell>
-                      {order.customer.name}
-                    </TableCell>
-                    <TableCell>
-                      {createdAt}
-                    </TableCell>
-                    <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
-                        {order.status}
-                      </SeverityPill>
+                      <SeverityPill color={statusMap.delivered}>{localizedPrice}</SeverityPill>
                     </TableCell>
                   </TableRow>
                 );
@@ -80,14 +66,15 @@ export const OverviewLatestOrders = (props) => {
         </Box>
       </Scrollbar>
       <Divider />
-      <CardActions sx={{ justifyContent: 'flex-end' }}>
+      <CardActions sx={{ justifyContent: "flex-end" }}>
         <Button
+          onClick={() => router.push("/aboneler")}
           color="inherit"
-          endIcon={(
+          endIcon={
             <SvgIcon fontSize="small">
               <ArrowRightIcon />
             </SvgIcon>
-          )}
+          }
           size="small"
           variant="text"
         >
@@ -100,5 +87,5 @@ export const OverviewLatestOrders = (props) => {
 
 OverviewLatestOrders.prototype = {
   orders: PropTypes.array,
-  sx: PropTypes.object
+  sx: PropTypes.object,
 };

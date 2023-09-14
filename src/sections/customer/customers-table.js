@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { format } from 'date-fns';
+import PropTypes from "prop-types";
+import { format } from "date-fns";
 import {
   Avatar,
   Box,
@@ -12,12 +12,20 @@ import {
   TableHead,
   TablePagination,
   TableRow,
-  Typography
-} from '@mui/material';
-import { Scrollbar } from 'src/components/scrollbar';
-import { getInitials } from 'src/utils/get-initials';
+  Typography,
+} from "@mui/material";
+import { Scrollbar } from "src/components/scrollbar";
+import { getInitials } from "src/utils/get-initials";
+import { AiOutlineDelete } from "react-icons/ai";
+import { BiSearch } from "react-icons/bi";
+import { useRouter } from "next/router";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import Loader from "../../components/loader";
 
 export const CustomersTable = (props) => {
+  const router = useRouter();
   const {
     count = 0,
     items = [],
@@ -27,99 +35,76 @@ export const CustomersTable = (props) => {
     onRowsPerPageChange,
     onSelectAll,
     onSelectOne,
-    page = 0,
-    rowsPerPage = 0,
-    selected = []
+    page = 1,
+    rowsPerPage = 10,
+    selected = [],
+    getter,
   } = props;
+  const [isFetching, setIsFetching] = useState(false);
 
-  const selectedSome = (selected.length > 0) && (selected.length < items.length);
-  const selectedAll = (items.length > 0) && (selected.length === items.length);
+  const selectedSome = selected.length > 0 && selected.length < items.length;
+  const selectedAll = items.length > 0 && selected.length === items.length;
+
+  const handleDelete = (_id) => {
+    setIsFetching(true);
+    axios
+      .delete(`http://localhost:3000/api/recipes/delete?_id=${_id}`)
+      .then((res) => {
+        toast.success("Tarif başarıyla silindi");
+        getter();
+      })
+      .catch((err) => console.log(err))
+      .finally((res) => setIsFetching(false));
+  };
 
   return (
     <Card>
+      {isFetching && <Loader />}
       <Scrollbar>
         <Box sx={{ minWidth: 800 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedAll}
-                    indeterminate={selectedSome}
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        onSelectAll?.();
-                      } else {
-                        onDeselectAll?.();
-                      }
-                    }}
-                  />
-                </TableCell>
-                <TableCell>
-                  Name
-                </TableCell>
-                <TableCell>
-                  Email
-                </TableCell>
-                <TableCell>
-                  Location
-                </TableCell>
-                <TableCell>
-                  Phone
-                </TableCell>
-                <TableCell>
-                  Signed Up
-                </TableCell>
+                <TableCell>TARİF ADI</TableCell>
+                <TableCell>KALORİ</TableCell>
+                <TableCell>SÜRE</TableCell>
+                <TableCell>OLŞTR. TARİHİ</TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((customer) => {
-                const isSelected = selected.includes(customer.id);
-                const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
+              {items.map((recipe) => {
+                const isSelected = selected.includes(recipe.id);
+                const createdAt = format(new Date(), "dd/MM/yyyy");
 
                 return (
-                  <TableRow
-                    hover
-                    key={customer.id}
-                    selected={isSelected}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={isSelected}
-                        onChange={(event) => {
-                          if (event.target.checked) {
-                            onSelectOne?.(customer.id);
-                          } else {
-                            onDeselectOne?.(customer.id);
-                          }
-                        }}
-                      />
-                    </TableCell>
+                  <TableRow hover key={recipe._id} selected={isSelected}>
                     <TableCell>
-                      <Stack
-                        alignItems="center"
-                        direction="row"
-                        spacing={2}
-                      >
-                        <Avatar src={customer.avatar}>
-                          {getInitials(customer.name)}
+                      <Stack alignItems="center" direction="row" spacing={2}>
+                        <Avatar src={`http://localhost:3000/uploads/${recipe.fotograf}`}>
+                          {getInitials(recipe.name)}
                         </Avatar>
-                        <Typography variant="subtitle2">
-                          {customer.name}
-                        </Typography>
+                        <Typography variant="subtitle2">{recipe.tarif_adi}</Typography>
                       </Stack>
                     </TableCell>
+                    <TableCell>{recipe.besin_degerleri.kalori}</TableCell>
+                    <TableCell>{recipe.sure}dk</TableCell>
+                    <TableCell>{createdAt}</TableCell>
                     <TableCell>
-                      {customer.email}
-                    </TableCell>
-                    <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
-                    </TableCell>
-                    <TableCell>
-                      {customer.phone}
-                    </TableCell>
-                    <TableCell>
-                      {createdAt}
+                      <div className="flex items-center space-x-2">
+                        <button
+                          onClick={() => router.push(`/tarifler/${recipe._id}`)}
+                          className="flex items-center justify-center bg-green-500 text-white w-10 h-10 rounded-lg"
+                        >
+                          <BiSearch size={20} />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(recipe._id)}
+                          className="flex items-center justify-center bg-red-500 text-white w-10 h-10 rounded-lg"
+                        >
+                          <AiOutlineDelete size={20} />
+                        </button>
+                      </div>
                     </TableCell>
                   </TableRow>
                 );
@@ -128,7 +113,7 @@ export const CustomersTable = (props) => {
           </Table>
         </Box>
       </Scrollbar>
-      <TablePagination
+      {/* <TablePagination
         component="div"
         count={count}
         onPageChange={onPageChange}
@@ -136,7 +121,7 @@ export const CustomersTable = (props) => {
         page={page}
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
-      />
+      /> */}
     </Card>
   );
 };
@@ -152,5 +137,5 @@ CustomersTable.propTypes = {
   onSelectOne: PropTypes.func,
   page: PropTypes.number,
   rowsPerPage: PropTypes.number,
-  selected: PropTypes.array
+  selected: PropTypes.array,
 };

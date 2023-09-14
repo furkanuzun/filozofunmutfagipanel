@@ -1,84 +1,97 @@
-import ChartBarIcon from '@heroicons/react/24/solid/ChartBarIcon';
-import CogIcon from '@heroicons/react/24/solid/CogIcon';
-import LockClosedIcon from '@heroicons/react/24/solid/LockClosedIcon';
-import ShoppingBagIcon from '@heroicons/react/24/solid/ShoppingBagIcon';
-import UserIcon from '@heroicons/react/24/solid/UserIcon';
-import UserPlusIcon from '@heroicons/react/24/solid/UserPlusIcon';
-import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
-import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
-import { SvgIcon } from '@mui/material';
+import ChartBarIcon from "@heroicons/react/24/solid/ChartBarIcon";
+import CogIcon from "@heroicons/react/24/solid/CogIcon";
+import LockClosedIcon from "@heroicons/react/24/solid/LockClosedIcon";
+import ShoppingBagIcon from "@heroicons/react/24/solid/ShoppingBagIcon";
+import UserIcon from "@heroicons/react/24/solid/UserIcon";
+import UserPlusIcon from "@heroicons/react/24/solid/UserPlusIcon";
+import UsersIcon from "@heroicons/react/24/solid/UsersIcon";
+import XCircleIcon from "@heroicons/react/24/solid/XCircleIcon";
+import { SvgIcon } from "@mui/material";
+import { BiCookie, BiCategory, BiUser, BiMailSend, BiMoney, BiHomeSmile } from "react-icons/bi";
+import { AiOutlineFire } from "react-icons/ai";
+import { RiContactsLine } from "react-icons/ri";
+import { GiReceiveMoney } from "react-icons/gi";
 
 export const items = [
   {
-    title: 'Overview',
-    path: '/',
+    title: "Ana sayfa",
+    path: "/",
     icon: (
       <SvgIcon fontSize="small">
-        <ChartBarIcon />
+        <BiHomeSmile />
       </SvgIcon>
-    )
+    ),
   },
   {
-    title: 'Customers',
-    path: '/customers',
+    title: "Tarifler",
+    path: "/tarifler",
     icon: (
       <SvgIcon fontSize="small">
-        <UsersIcon />
+        <BiCookie />
       </SvgIcon>
-    )
+    ),
   },
   {
-    title: 'Companies',
-    path: '/companies',
+    title: "Kategoriler",
+    path: "/kategoriler",
     icon: (
       <SvgIcon fontSize="small">
-        <ShoppingBagIcon />
+        <BiCategory />
       </SvgIcon>
-    )
+    ),
   },
   {
-    title: 'Account',
-    path: '/account',
+    title: "Kalori Sayaçları",
+    path: "/kalori-sayaclari",
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <AiOutlineFire />
       </SvgIcon>
-    )
+    ),
   },
   {
-    title: 'Settings',
-    path: '/settings',
+    title: "İletişim Kategorileri",
+    path: "/iletisim-kategorileri",
     icon: (
       <SvgIcon fontSize="small">
-        <CogIcon />
+        <RiContactsLine />
       </SvgIcon>
-    )
+    ),
   },
   {
-    title: 'Login',
-    path: '/auth/login',
+    title: "İletişim Formları",
+    path: "/iletisim-formlari",
     icon: (
       <SvgIcon fontSize="small">
-        <LockClosedIcon />
+        <BiMailSend />
       </SvgIcon>
-    )
+    ),
   },
   {
-    title: 'Register',
-    path: '/auth/register',
+    title: "Kullanıcılar",
+    path: "/kullanicilar",
     icon: (
       <SvgIcon fontSize="small">
-        <UserPlusIcon />
+        <BiUser />
       </SvgIcon>
-    )
+    ),
   },
   {
-    title: 'Error',
-    path: '/404',
+    title: "Aboneler",
+    path: "/aboneler",
     icon: (
       <SvgIcon fontSize="small">
-        <XCircleIcon />
+        <BiMoney />
       </SvgIcon>
-    )
-  }
+    ),
+  },
+  {
+    title: "Tüm Kazançlar",
+    path: "/aboneler/kazanclar",
+    icon: (
+      <SvgIcon fontSize="small">
+        <GiReceiveMoney />
+      </SvgIcon>
+    ),
+  },
 ];
