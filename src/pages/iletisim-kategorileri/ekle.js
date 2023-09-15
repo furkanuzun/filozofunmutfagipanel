@@ -18,7 +18,7 @@ const KategoriEkle = () => {
       kategori_adi: kategoriAdi,
     };
 
-    const url = "http://localhost:3000/api/contact-categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/contact-categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postCategory = new Promise((resolve, reject) =>
       axios

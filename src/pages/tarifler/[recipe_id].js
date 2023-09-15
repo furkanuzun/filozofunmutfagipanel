@@ -21,7 +21,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Chip from "@mui/material/Chip";
 import { FileUploader } from "react-drag-drop-files";
 import axios from "axios";
-import Loader from "../../components/loader";
+import Loader from "src/components/loader";
 import { toast } from "react-toastify";
 import notify from "src/components/notify";
 import { useRouter } from "next/router";
@@ -52,7 +52,7 @@ const TarifEkle = () => {
   const getRecipe = () => {
     setIsFetching(true);
     axios
-      .get(`http://localhost:3000/api/recipes/recipe?_id=${router.query.recipe_id}`)
+      .get(`https://filozofunmutfagi.com/api/recipes/recipe?_id=${router.query.recipe_id}`)
       .then((res) => {
         const { recipe } = res.data;
         const { malzemeler, talimatlar, fotograf, kategoriler, kalori_sayaci } = recipe;
@@ -71,7 +71,7 @@ const TarifEkle = () => {
   const getCats = (kategoriler, kalori_sayaci) => {
     const getCategories = new Promise((resolve, reject) =>
       axios
-        .get("http://localhost:3000/api/categories")
+        .get("https://filozofunmutfagi.com/api/categories")
         .then((res) => {
           setMainCategories(res.data.categories);
           let selectedCats = [];
@@ -92,7 +92,7 @@ const TarifEkle = () => {
     );
     const getCalorieMeters = new Promise((resolve, reject) =>
       axios
-        .get("http://localhost:3000/api/calorie-meters")
+        .get("https://filozofunmutfagi.com/api/calorie-meters")
         .then((res) => {
           setCalorieMeters(res.data.calorieMeters);
           let selectedMeter = res.data.calorieMeters.find(
@@ -214,7 +214,7 @@ const TarifEkle = () => {
 
   const handleChangePhoto = (file) => {
     setIsFetching(true);
-    const url = "http://localhost:3000/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const formData = new FormData();
     formData.append("image", file.target.files[0]);
@@ -244,7 +244,7 @@ const TarifEkle = () => {
       kalori_sayaci: selectedCalorieMeters,
     };
 
-    const url = "http://localhost:3000/api/recipes/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/recipes/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postRecipe = new Promise((resolve, reject) =>
       axios

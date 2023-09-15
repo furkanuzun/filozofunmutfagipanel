@@ -44,7 +44,7 @@ const Page = () => {
 
   const getForms = () => {
     axios
-      .get("http://localhost:3000/api/subscriptions/all-earnings")
+      .get("https://filozofunmutfagi.com/api/subscriptions/all-earnings")
       .then((res) => {
         console.log(res.data.earnings);
         setUsers(res.data.earnings);

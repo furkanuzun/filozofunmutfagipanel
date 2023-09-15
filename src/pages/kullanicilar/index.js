@@ -38,7 +38,7 @@ const Page = () => {
 
   const getForms = () => {
     axios
-      .get("http://localhost:3000/api/users/get-users")
+      .get("https://filozofunmutfagi.com/api/users/get-users")
       .then((res) => {
         console.log(res.data.users);
         setUsers(res.data.users);

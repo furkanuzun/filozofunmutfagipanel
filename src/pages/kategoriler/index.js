@@ -32,7 +32,7 @@ const Page = () => {
   const [photo, setPhoto] = useState(null);
   const handleChangePhoto = (file) => {
     setIsFetching(true);
-    const url = "http://localhost:3000/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const formData = new FormData();
     formData.append("image", file.target.files[0]);
@@ -59,7 +59,7 @@ const Page = () => {
     e.preventDefault();
     setIsFetching(true);
 
-    const url = "http://localhost:3000/api/categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const putCategory = new Promise((resolve, reject) =>
       axios
@@ -95,7 +95,7 @@ const Page = () => {
 
     const putCategory = new Promise((resolve, reject) =>
       axios
-        .delete(`http://localhost:3000/api/categories/delete?_id=${_id}`)
+        .delete(`https://filozofunmutfagi.com/api/categories/delete?_id=${_id}`)
         .then((res) => {
           resolve();
         })
@@ -118,7 +118,7 @@ const Page = () => {
 
   const getCategories = () => {
     axios
-      .get("http://localhost:3000/api/categories")
+      .get("https://filozofunmutfagi.com/api/categories")
       .then((res) => {
         console.log(res.data.categories);
         setKategoriler(res.data.categories);
@@ -183,7 +183,7 @@ const Page = () => {
                         <div className="flex items-center space-x-2">
                           <img
                             className="rounded-full w-8 h-8"
-                            src={`http://localhost:3000/uploads/${kategori.fotograf}`}
+                            src={`https://filozofunmutfagi.com/uploads/${kategori.fotograf}`}
                             alt=""
                           />
                           <Typography variant="subtitle2">{kategori.kategori_adi}</Typography>
@@ -232,7 +232,7 @@ const Page = () => {
                 <label htmlFor="upload-image">
                   {selectedCategory.fotograf && (
                     <img
-                      src={`http://localhost:3000/uploads/${selectedCategory.fotograf}`}
+                      src={`https://filozofunmutfagi.com/uploads/${selectedCategory.fotograf}`}
                       className="h-40 my-4"
                     />
                   )}

@@ -78,7 +78,7 @@ const Page = () => {
 
   const getRecipes = () => {
     axios
-      .get("http://localhost:3000/api/recipes")
+      .get("https://filozofunmutfagi.com/api/recipes")
       .then((res) => {
         setRecipes(res.data.recipes);
         setReady(true);

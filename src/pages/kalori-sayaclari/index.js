@@ -39,7 +39,7 @@ const Page = () => {
 
   const getCalorieMeters = () => {
     axios
-      .get("http://localhost:3000/api/calorie-meters")
+      .get("https://filozofunmutfagi.com/api/calorie-meters")
       .then((res) => setKategoriler(res.data.calorieMeters))
       .catch((err) => console.log(err));
   };
@@ -47,7 +47,7 @@ const Page = () => {
   const updateCategory = (e) => {
     e.preventDefault();
 
-    const url = "http://localhost:3000/api/calorie-meters/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/calorie-meters/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const putCategory = new Promise((resolve, reject) =>
       axios

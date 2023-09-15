@@ -38,7 +38,7 @@ const Page = () => {
     e.preventDefault();
     setIsFetching(true);
 
-    const url = "http://localhost:3000/api/contact-categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/contact-categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const putCategory = new Promise((resolve, reject) =>
       axios
@@ -73,7 +73,7 @@ const Page = () => {
 
     const putCategory = new Promise((resolve, reject) =>
       axios
-        .delete(`http://localhost:3000/api/contact-categories/delete?_id=${_id}`)
+        .delete(`https://filozofunmutfagi.com/api/contact-categories/delete?_id=${_id}`)
         .then((res) => {
           resolve();
         })
@@ -96,7 +96,7 @@ const Page = () => {
 
   const getCategories = () => {
     axios
-      .get("http://localhost:3000/api/contact-categories")
+      .get("https://filozofunmutfagi.com/api/contact-categories")
       .then((res) => {
         setKategoriler(res.data.categories);
       })

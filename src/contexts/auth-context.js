@@ -35,6 +35,7 @@ const handlers = {
   [HANDLERS.SIGN_IN]: (state, action) => {
     console.log("--sign in handler working");
     const user = action.payload;
+    window.sessionStorage.setItem("authenticated", "true");
 
     return {
       ...state,

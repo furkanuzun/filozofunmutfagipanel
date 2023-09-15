@@ -8,7 +8,8 @@ async function connectToDatabase() {
   }
 
   const client = await MongoClient.connect(
-    "mongodb://root:filozof8563F@127.0.0.1:27017/",
+    "mongodb+srv://furkanuzun:mongo8563M@cluster0.thdascn.mongodb.net/",
+    // PROD MONGO: "mongodb://root:filozof8563F@127.0.0.1:27017/",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

@@ -22,7 +22,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import Loader from "../../components/loader";
+import Loader from "src/components/loader";
 
 export const CustomersTable = (props) => {
   const router = useRouter();
@@ -48,7 +48,7 @@ export const CustomersTable = (props) => {
   const handleDelete = (_id) => {
     setIsFetching(true);
     axios
-      .delete(`http://localhost:3000/api/recipes/delete?_id=${_id}`)
+      .delete(`https://filozofunmutfagi.com/api/recipes/delete?_id=${_id}`)
       .then((res) => {
         toast.success("Tarif başarıyla silindi");
         getter();
@@ -81,7 +81,7 @@ export const CustomersTable = (props) => {
                   <TableRow hover key={recipe._id} selected={isSelected}>
                     <TableCell>
                       <Stack alignItems="center" direction="row" spacing={2}>
-                        <Avatar src={`http://localhost:3000/uploads/${recipe.fotograf}`}>
+                        <Avatar src={`https://filozofunmutfagi.com/uploads/${recipe.fotograf}`}>
                           {getInitials(recipe.name)}
                         </Avatar>
                         <Typography variant="subtitle2">{recipe.tarif_adi}</Typography>

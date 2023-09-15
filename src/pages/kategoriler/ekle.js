@@ -13,7 +13,7 @@ const KategoriEkle = () => {
   const [isFetching, setIsFetching] = useState(false);
   const handleChangePhoto = (file) => {
     setIsFetching(true);
-    const url = "http://localhost:3000/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const formData = new FormData();
     formData.append("image", file.target.files[0]);
@@ -39,7 +39,7 @@ const KategoriEkle = () => {
       fotograf: photo,
     };
 
-    const url = "http://localhost:3000/api/categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postCategory = new Promise((resolve, reject) =>
       axios
@@ -90,7 +90,7 @@ const KategoriEkle = () => {
                 onChange={handleChangePhoto}
               />
             </label>
-            {photo && <img src={`http://localhost:3000/uploads/${photo}`} className="h-40 mt-4" />}
+            {photo && <img src={`https://filozofunmutfagi.com/uploads/${photo}`} className="h-40 mt-4" />}
           </div>
           <div className="col-span-1">
             <div className="mb-1">Kategori adı</div>

@@ -38,7 +38,7 @@ const Page = () => {
 
   const getForms = () => {
     axios
-      .get("http://localhost:3000/api/contacts")
+      .get("https://filozofunmutfagi.com/api/contacts")
       .then((res) => {
         console.log(res.data.contacts);
         setKategoriler(res.data.contacts);

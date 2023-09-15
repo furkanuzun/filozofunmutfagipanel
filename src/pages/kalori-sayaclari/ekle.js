@@ -5,7 +5,7 @@ import { BiUpload } from "react-icons/bi";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import Loader from "../../components/loader";
+import Loader from "src/components/loader";
 
 const KaloriSayacEkle = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const KaloriSayacEkle = () => {
       kalori_sayac_adi,
     };
 
-    const url = "http://localhost:3000/api/calorie-meters/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://filozofunmutfagi.com/api/calorie-meters/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postCategory = new Promise((resolve, reject) =>
       axios
