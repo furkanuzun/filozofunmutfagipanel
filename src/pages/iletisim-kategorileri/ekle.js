@@ -18,7 +18,7 @@ const KategoriEkle = () => {
       kategori_adi: kategoriAdi,
     };
 
-    const url = "https://filozofunmutfagi.com/api/contact-categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/contact-categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postCategory = new Promise((resolve, reject) =>
       axios
@@ -54,7 +54,7 @@ const KategoriEkle = () => {
     <form onSubmit={handleSubmit} className="p-4">
       <div className="text-2xl">Yeni Kategori Ekle</div>
       <Card className="p-4 mt-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div className="col-span-1">
             <div className="mb-1">Kategori adı</div>
             <TextField
@@ -67,7 +67,7 @@ const KategoriEkle = () => {
             />
           </div>
           <Divider />
-          <div className="col-span-2 flex justify-end">
+          <div className="col-span-1 lg:col-span-2 flex justify-end">
             <Button type="submit" size="large" variant="contained" color="success">
               Kategoriyi Ekle
             </Button>

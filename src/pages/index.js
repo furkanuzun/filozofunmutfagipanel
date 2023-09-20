@@ -28,7 +28,7 @@ const Page = () => {
 
   const getLatestSubscriptions = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/subscriptions/latest-subscriptions")
+      .get("http://localhost:3001/api/subscriptions/latest-subscriptions")
       .then((res) => {
         console.log("--from stats", res.data);
         setLatestSubscriptions(res.data.latestSubscriptions);
@@ -41,7 +41,7 @@ const Page = () => {
 
   const getStatistics = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/statistics")
+      .get("http://localhost:3001/api/statistics")
       .then((res) => {
         console.log("--from stats", res.data);
         setStatistics(res.data);
@@ -54,7 +54,7 @@ const Page = () => {
 
   const getForms = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/contacts")
+      .get("http://localhost:3001/api/contacts")
       .then((res) => {
         setContactForms(res.data.contacts.splice(0, 10));
         setIsLoading(false);

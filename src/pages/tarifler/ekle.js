@@ -54,7 +54,7 @@ const TarifEkle = () => {
   const getCats = () => {
     const getCategories = new Promise((resolve, reject) =>
       axios
-        .get("https://filozofunmutfagi.com/api/categories")
+        .get("http://localhost:3001/api/categories")
         .then((res) => {
           setMainCategories(res.data.categories);
           resolve();
@@ -63,7 +63,7 @@ const TarifEkle = () => {
     );
     const getCalorieMeters = new Promise((resolve, reject) =>
       axios
-        .get("https://filozofunmutfagi.com/api/calorie-meters")
+        .get("http://localhost:3001/api/calorie-meters")
         .then((res) => {
           setCalorieMeters(res.data.calorieMeters);
           resolve();
@@ -192,7 +192,7 @@ const TarifEkle = () => {
 
   const handleChangePhoto = (file) => {
     setIsFetching(true);
-    const url = "https://filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const formData = new FormData();
     formData.append("image", file.target.files[0]);
@@ -222,7 +222,7 @@ const TarifEkle = () => {
       kalori_sayaci: selectedCalorieMeters,
     };
 
-    const url = "https://filozofunmutfagi.com/api/recipes/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/recipes/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postRecipe = new Promise((resolve, reject) =>
       axios
@@ -273,7 +273,7 @@ const TarifEkle = () => {
               <div className="col-span-2 flex items-center justify-between">
                 <div className="font-medium text-xl">Genel bilgiler</div>
               </div>
-              <div className="col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <TextField
                   onChange={(e) =>
                     setTarif((prevState) => ({ ...prevState, tarif_adi: e.target.value }))
@@ -285,7 +285,7 @@ const TarifEkle = () => {
                   required
                 />
               </div>
-              <div className="col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <TextField
                   onChange={(e) =>
                     setTarif((prevState) => ({ ...prevState, sure: e.target.value }))
@@ -313,7 +313,7 @@ const TarifEkle = () => {
               <div className="col-span-2">
                 <div className="font-medium text-xl">Kalori/makro bilgileri</div>
               </div>
-              <div className="col-span-2 grid grid-cols-4 gap-4">
+              <div className="col-span-2 grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="col-span-1">
                   <TextField
                     onChange={(e) =>
@@ -386,7 +386,7 @@ const TarifEkle = () => {
               <Divider />
               <div className="col-span-2">
                 <div className="font-medium text-xl mb-4">Tarif detayları</div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div className="col-span-1">
                     <div className="mb-1">Malzemeler</div>
                     <ReactTags
@@ -438,7 +438,7 @@ const TarifEkle = () => {
               {!isFetching && (
                 <div className="col-span-2">
                   <div className="font-medium text-xl mb-4">Kategorizasyon</div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div className="col-span-1">
                       {/* <div className="mb-1">Ana Kategoriler</div> */}
                       <FormControl sx={{ width: "100%" }}>
@@ -518,7 +518,7 @@ const TarifEkle = () => {
               <Divider />
               <div className="col-span-2">
                 <div className="font-medium text-xl mb-4">Medyalar</div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                   <div className="col-span-1">
                     <TextField
                       onChange={(e) =>
@@ -528,7 +528,7 @@ const TarifEkle = () => {
                         }))
                       }
                       fullWidth
-                      label="Tarif video linki"
+                      label="Tarif youtube linki"
                       name="firstName"
                       required
                     />

@@ -18,7 +18,7 @@ const KaloriSayacEkle = () => {
       kalori_sayac_adi,
     };
 
-    const url = "https://filozofunmutfagi.com/api/calorie-meters/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/calorie-meters/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postCategory = new Promise((resolve, reject) =>
       axios
@@ -56,7 +56,7 @@ const KaloriSayacEkle = () => {
       <div className="text-2xl">Yeni Kalori Sayacı Ekle</div>
       <Card className="p-4 mt-4">
         <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <div className="mb-1">Sayaç adı</div>
             <TextField
               value={kalori_sayac_adi}
@@ -67,7 +67,6 @@ const KaloriSayacEkle = () => {
               required
             />
           </div>
-          <Divider />
           <div className="col-span-2 flex justify-end">
             <Button type="submit" size="large" variant="contained" color="success">
               Sayacı Ekle

@@ -13,7 +13,7 @@ const KategoriEkle = () => {
   const [isFetching, setIsFetching] = useState(false);
   const handleChangePhoto = (file) => {
     setIsFetching(true);
-    const url = "https://filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://panel.filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const formData = new FormData();
     formData.append("image", file.target.files[0]);
@@ -39,7 +39,7 @@ const KategoriEkle = () => {
       fotograf: photo,
     };
 
-    const url = "https://filozofunmutfagi.com/api/categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "https://panel.filozofunmutfagi.com/api/categories/add"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postCategory = new Promise((resolve, reject) =>
       axios
@@ -76,7 +76,7 @@ const KategoriEkle = () => {
       <div className="text-2xl">Yeni Kategori Ekle</div>
       <Card className="p-4 mt-4">
         <div className="grid grid-cols-2 gap-4">
-          <div className="col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <div className="mb-2">Kategori fotoğrafı</div>
             <label htmlFor="upload-image">
               <Button variant="contained" component="span" startIcon={<BiUpload />}>
@@ -90,9 +90,9 @@ const KategoriEkle = () => {
                 onChange={handleChangePhoto}
               />
             </label>
-            {photo && <img src={`https://filozofunmutfagi.com/uploads/${photo}`} className="h-40 mt-4" />}
+            {photo && <img src={`https://panel.filozofunmutfagi.com/uploads/${photo}`} className="h-40 mt-4" />}
           </div>
-          <div className="col-span-1">
+          <div className="col-span-2 lg:col-span-1">
             <div className="mb-1">Kategori adı</div>
             <TextField
               value={kategoriAdi}

@@ -39,7 +39,7 @@ const Page = () => {
 
   const getCalorieMeters = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/calorie-meters")
+      .get("http://localhost:3001/api/calorie-meters")
       .then((res) => setKategoriler(res.data.calorieMeters))
       .catch((err) => console.log(err));
   };
@@ -47,7 +47,7 @@ const Page = () => {
   const updateCategory = (e) => {
     e.preventDefault();
 
-    const url = "https://filozofunmutfagi.com/api/calorie-meters/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/calorie-meters/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const putCategory = new Promise((resolve, reject) =>
       axios
@@ -93,7 +93,7 @@ const Page = () => {
           <Stack spacing={3}>
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
-                <Typography variant="h4">Kalori Sayaçları</Typography>
+                <Typography variant="h4">Sayaçlar</Typography>
               </Stack>
               <div>
                 <Button
@@ -105,7 +105,7 @@ const Page = () => {
                   }
                   variant="contained"
                 >
-                  Yeni Kalori Sayacı Ekle
+                  Yeni Ekle
                 </Button>
               </div>
             </Stack>
@@ -160,7 +160,7 @@ const Page = () => {
           aria-describedby="modal-modal-description"
           className="flex items-center justify-center"
         >
-          <form onSubmit={updateCategory} className="bg-white w-1/2 p-4 rounded-xl">
+          <form onSubmit={updateCategory} className="bg-white w-[90%] lg:w-1/2 p-4 rounded-xl">
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Sayacı Düzenle
             </Typography>

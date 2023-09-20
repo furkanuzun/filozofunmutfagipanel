@@ -32,7 +32,7 @@ const Page = () => {
   const [photo, setPhoto] = useState(null);
   const handleChangePhoto = (file) => {
     setIsFetching(true);
-    const url = "https://filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const formData = new FormData();
     formData.append("image", file.target.files[0]);
@@ -59,7 +59,7 @@ const Page = () => {
     e.preventDefault();
     setIsFetching(true);
 
-    const url = "https://filozofunmutfagi.com/api/categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const putCategory = new Promise((resolve, reject) =>
       axios
@@ -95,7 +95,7 @@ const Page = () => {
 
     const putCategory = new Promise((resolve, reject) =>
       axios
-        .delete(`https://filozofunmutfagi.com/api/categories/delete?_id=${_id}`)
+        .delete(`http://localhost:3001/api/categories/delete?_id=${_id}`)
         .then((res) => {
           resolve();
         })
@@ -118,7 +118,7 @@ const Page = () => {
 
   const getCategories = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/categories")
+      .get("http://localhost:3001/api/categories")
       .then((res) => {
         console.log(res.data.categories);
         setKategoriler(res.data.categories);
@@ -158,7 +158,7 @@ const Page = () => {
                   }
                   variant="contained"
                 >
-                  Yeni Kategori Ekle
+                  Yeni Ekle
                 </Button>
               </div>
             </Stack>
@@ -183,7 +183,7 @@ const Page = () => {
                         <div className="flex items-center space-x-2">
                           <img
                             className="rounded-full w-8 h-8"
-                            src={`https://filozofunmutfagi.com/uploads/${kategori.fotograf}`}
+                            src={`http://localhost:3001/uploads/${kategori.fotograf}`}
                             alt=""
                           />
                           <Typography variant="subtitle2">{kategori.kategori_adi}</Typography>
@@ -222,17 +222,17 @@ const Page = () => {
           aria-describedby="modal-modal-description"
           className="flex items-center justify-center"
         >
-          <form onSubmit={updateCategory} className="bg-white w-1/2 p-4 rounded-xl">
+          <form onSubmit={updateCategory} className="bg-white w-[90%] lg:w-1/2 p-4 rounded-xl">
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Kategori Düzenle
             </Typography>
             <div className="grid grid-cols-2 gap-4 mt-4">
-              <div className="col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <div className="mb-2">Kategori fotoğrafı</div>
                 <label htmlFor="upload-image">
                   {selectedCategory.fotograf && (
                     <img
-                      src={`https://filozofunmutfagi.com/uploads/${selectedCategory.fotograf}`}
+                      src={`http://localhost:3001/uploads/${selectedCategory.fotograf}`}
                       className="h-40 my-4"
                     />
                   )}
@@ -246,7 +246,7 @@ const Page = () => {
                   />
                 </label>
               </div>
-              <div className="col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <TextField
                   placeholder="Kategori adı"
                   label="Kategori Adı"
@@ -260,7 +260,7 @@ const Page = () => {
                   required
                 />
               </div>
-              <div className="col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Button
                   variant="contained"
                   component="span"
@@ -270,7 +270,7 @@ const Page = () => {
                   Tarif Fotoğrafı Yükle
                 </Button>
               </div>
-              <div className="col-span-1">
+              <div className="col-span-2 lg:col-span-1">
                 <Button type="submit" variant="contained" color="success" className="w-full h-full">
                   Kaydet
                 </Button>

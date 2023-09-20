@@ -38,7 +38,7 @@ const Page = () => {
 
   const getForms = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/contacts")
+      .get("http://localhost:3001/api/contacts")
       .then((res) => {
         console.log(res.data.contacts);
         setKategoriler(res.data.contacts);
@@ -138,7 +138,7 @@ const Page = () => {
           aria-describedby="modal-modal-description"
           className="flex items-center justify-center"
         >
-          <form className="bg-white w-1/2 p-4 rounded-xl">
+          <form className="bg-white w-[90%] lg:w-1/2 p-4 rounded-xl">
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {selectedCategory.baslik}
             </Typography>

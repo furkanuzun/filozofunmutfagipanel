@@ -44,7 +44,7 @@ const Page = () => {
 
   const getForms = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/subscriptions/all-earnings")
+      .get("http://localhost:3001/api/subscriptions/all-earnings")
       .then((res) => {
         console.log(res.data.earnings);
         setUsers(res.data.earnings);
@@ -123,7 +123,7 @@ const Page = () => {
           aria-describedby="modal-modal-description"
           className="flex items-center justify-center"
         >
-          <form className="bg-white w-1/2 p-4 rounded-xl">
+          <form className="bg-white w-[90%] lg:w-1/2 p-4 rounded-xl">
             <Typography id="modal-modal-title" variant="h6" component="h2">
               {selectedCategory.baslik}
             </Typography>

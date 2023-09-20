@@ -52,7 +52,7 @@ const TarifEkle = () => {
   const getRecipe = () => {
     setIsFetching(true);
     axios
-      .get(`https://filozofunmutfagi.com/api/recipes/recipe?_id=${router.query.recipe_id}`)
+      .get(`http://localhost:3001/api/recipes/recipe?_id=${router.query.recipe_id}`)
       .then((res) => {
         const { recipe } = res.data;
         const { malzemeler, talimatlar, fotograf, kategoriler, kalori_sayaci } = recipe;
@@ -71,7 +71,7 @@ const TarifEkle = () => {
   const getCats = (kategoriler, kalori_sayaci) => {
     const getCategories = new Promise((resolve, reject) =>
       axios
-        .get("https://filozofunmutfagi.com/api/categories")
+        .get("http://localhost:3001/api/categories")
         .then((res) => {
           setMainCategories(res.data.categories);
           let selectedCats = [];
@@ -92,7 +92,7 @@ const TarifEkle = () => {
     );
     const getCalorieMeters = new Promise((resolve, reject) =>
       axios
-        .get("https://filozofunmutfagi.com/api/calorie-meters")
+        .get("http://localhost:3001/api/calorie-meters")
         .then((res) => {
           setCalorieMeters(res.data.calorieMeters);
           let selectedMeter = res.data.calorieMeters.find(
@@ -214,7 +214,7 @@ const TarifEkle = () => {
 
   const handleChangePhoto = (file) => {
     setIsFetching(true);
-    const url = "https://filozofunmutfagi.com/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/photo-upload"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const formData = new FormData();
     formData.append("image", file.target.files[0]);
@@ -244,7 +244,7 @@ const TarifEkle = () => {
       kalori_sayaci: selectedCalorieMeters,
     };
 
-    const url = "https://filozofunmutfagi.com/api/recipes/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/recipes/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const postRecipe = new Promise((resolve, reject) =>
       axios
@@ -288,7 +288,7 @@ const TarifEkle = () => {
                 <div className="col-span-2 flex items-center justify-between">
                   <div className="font-medium text-xl">Genel bilgiler</div>
                 </div>
-                <div className="col-span-1">
+                <div className="col-span-2 lg:col-span-1">
                   <TextField
                     value={tarif.tarif_adi}
                     onChange={(e) =>
@@ -300,7 +300,7 @@ const TarifEkle = () => {
                     required
                   />
                 </div>
-                <div className="col-span-1">
+                <div className="col-span-2 lg:col-span-1">
                   <TextField
                     value={tarif.sure}
                     onChange={(e) =>
@@ -330,7 +330,7 @@ const TarifEkle = () => {
                 <div className="col-span-2">
                   <div className="font-medium text-xl">Kalori/makro bilgileri</div>
                 </div>
-                <div className="col-span-2 grid grid-cols-4 gap-4">
+                <div className="col-span-2 grid grid-cols-2 lg:grid-cols-4 gap-4">
                   <div className="col-span-1">
                     <TextField
                       value={tarif.besin_degerleri.kalori}
@@ -408,7 +408,7 @@ const TarifEkle = () => {
                 <div className="col-span-2">
                   <div className="font-medium text-xl mb-4">Tarif detayları</div>
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="col-span-1">
+                    <div className="col-span-2 lg:col-span-1">
                       <div className="mb-1">Malzemeler</div>
                       <ReactTags
                         classNames={{
@@ -430,7 +430,7 @@ const TarifEkle = () => {
                         autofocus={false}
                       />
                     </div>
-                    <div className="col-span-1">
+                    <div className="col-span-2 lg:col-span-1">
                       <div className="mb-1">Talimatlar</div>
                       <ReactTags
                         classNames={{
@@ -458,7 +458,7 @@ const TarifEkle = () => {
                 <Divider />
                 <div className="col-span-2">
                   <div className="font-medium text-xl mb-4">Kategorizasyon</div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div className="col-span-1">
                       {/* <div className="mb-1">Ana Kategoriler</div> */}
                       <FormControl sx={{ width: "100%" }}>
@@ -541,7 +541,7 @@ const TarifEkle = () => {
                 <Divider />
                 <div className="col-span-2">
                   <div className="font-medium text-xl mb-4">Medyalar</div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                     <div className="col-span-1">
                       <TextField
                         value={tarif.video}

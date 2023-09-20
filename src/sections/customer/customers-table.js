@@ -48,7 +48,7 @@ export const CustomersTable = (props) => {
   const handleDelete = (_id) => {
     setIsFetching(true);
     axios
-      .delete(`https://filozofunmutfagi.com/api/recipes/delete?_id=${_id}`)
+      .delete(`http://localhost:3001/api/recipes/delete?_id=${_id}`)
       .then((res) => {
         toast.success("Tarif başarıyla silindi");
         getter();
@@ -81,7 +81,7 @@ export const CustomersTable = (props) => {
                   <TableRow hover key={recipe._id} selected={isSelected}>
                     <TableCell>
                       <Stack alignItems="center" direction="row" spacing={2}>
-                        <Avatar src={`https://filozofunmutfagi.com/uploads/${recipe.fotograf}`}>
+                        <Avatar src={`http://localhost:3001/uploads/${recipe.fotograf}`}>
                           {getInitials(recipe.name)}
                         </Avatar>
                         <Typography variant="subtitle2">{recipe.tarif_adi}</Typography>

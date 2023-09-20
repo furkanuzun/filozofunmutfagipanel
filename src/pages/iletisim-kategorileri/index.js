@@ -38,7 +38,7 @@ const Page = () => {
     e.preventDefault();
     setIsFetching(true);
 
-    const url = "https://filozofunmutfagi.com/api/contact-categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
+    const url = "http://localhost:3001/api/contact-categories/edit"; // Uygulamanın port numarasını uygun şekilde değiştirin
 
     const putCategory = new Promise((resolve, reject) =>
       axios
@@ -73,7 +73,7 @@ const Page = () => {
 
     const putCategory = new Promise((resolve, reject) =>
       axios
-        .delete(`https://filozofunmutfagi.com/api/contact-categories/delete?_id=${_id}`)
+        .delete(`http://localhost:3001/api/contact-categories/delete?_id=${_id}`)
         .then((res) => {
           resolve();
         })
@@ -96,7 +96,7 @@ const Page = () => {
 
   const getCategories = () => {
     axios
-      .get("https://filozofunmutfagi.com/api/contact-categories")
+      .get("http://localhost:3001/api/contact-categories")
       .then((res) => {
         setKategoriler(res.data.categories);
       })
@@ -123,7 +123,7 @@ const Page = () => {
           <Stack spacing={3}>
             <Stack direction="row" justifyContent="space-between" spacing={4}>
               <Stack spacing={1}>
-                <Typography variant="h4">İletişim Kategorileri</Typography>
+                <Typography variant="h4">Kategoriler</Typography>
               </Stack>
               <div>
                 <Button
@@ -135,7 +135,7 @@ const Page = () => {
                   }
                   variant="contained"
                 >
-                  Yeni İletişim Kategorisi Ekle
+                  Yeni Ekle
                 </Button>
               </div>
             </Stack>
@@ -191,7 +191,7 @@ const Page = () => {
           aria-describedby="modal-modal-description"
           className="flex items-center justify-center"
         >
-          <form onSubmit={updateCategory} className="bg-white w-1/2 p-4 rounded-xl">
+          <form onSubmit={updateCategory} className="bg-white w-[90%] lg:w-1/2 p-4 rounded-xl">
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Kategori Düzenle
             </Typography>
